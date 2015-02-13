@@ -1,7 +1,7 @@
 {
   "ProjectGuid": "88d20803-01c8-46d7-b08c-ca4044a1569e",
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
-  "AppIdentifier": "com.telerik.plugindemo.pushwoosh",
+  "AppIdentifier": "fr.goethals.pushwoosh",
   "ProjectName": "Pushwoosh Demo",
   "IsRunnable": "true",
   "FrameworkVersion": "3.5.0",
@@ -35,8 +35,7 @@
     "org.apache.cordova.statusbar"
   ],
   "DeviceOrientations": [
-    "Portrait",
-    "Landscape"
+    "Portrait"
   ],
   "iOSStatusBarStyle": "Default",
   "AndroidHardwareAcceleration": "false",
@@ -52,5 +51,8 @@
   "WP8Capabilities": [
     "ID_CAP_PUSH_NOTIFICATION"
   ],
-  "Framework": "Cordova"
+  "Framework": "Cordova",
+  "projectVersion": "1",
+  "WP8PublisherID": "{b7cfc22c-3646-4546-90d3-3e8d7db574ba}",
+  "WP8ProductID": "{5cd21a89-12e6-4e00-a00b-0de7c477d9fb}"
 }
