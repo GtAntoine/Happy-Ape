@@ -1,5 +1,5 @@
 // Change this to the 'Application Code' of your Pushwoosh.com Application
-var PUSHWOOSH_APPID = "F9408-29446";
+var PUSHWOOSH_APPID = "278B0-4025D";
 
 // For Android, we need the 'Project Number' you created at https://console.developers.google.com
 // While you're there, make sure that 'Google Cloud Messaging for Android' is enabled (menu item API's)
