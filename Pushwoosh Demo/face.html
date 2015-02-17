@@ -2,39 +2,67 @@
 http://stackoverflow.com/questions/2851663/how-do-i-simulate-a-hover-with-a-touch-in-touch-enabled-browsers
 http://www.slickmedia.co.uk/news/blog/glenns-blog/fix-ipad-iphone-css-hover-issues/
 -->
-
-
-
 <!--Demo View-->
 <div data-role="view" data-title="face">
-    
-     <script>
-        function showUser(str) {
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
+    <script>
+        /*
+                 règles : on récupère les 5 dernières news 
+                 On compare aux 5 dernière news affichées le plus grand des 5 num reçus
+                 On affiche s'il n'a jamais été affiché
+                 On met à jour le tableau des 5 dernières news affichées
+                 
+                 On recule de news dans le temps tant quelle n'a jamais
+                 en local storage on enregisre les 5 dernières  news AFFICHES (et non récup)
+                 
+                 Exemple :
+                         état 1 :  
+                                 news vues : 2 3 7 8 9    localstorage
+                                 news reçus : 7 8 9 10 11   ajax
+                                 on affiche la 11
+                          
+                          état 2 :  
+                                 news vue : 3 7 8 9 11
+                                 news reçus : 7 8 9 10 11
+                                 11 existe, on affiche la 10 
+                                 
+                          état 3 :  
+                                 news vue : 7 8 9 10 11
+                                 news reçus : 7 8 9 10 11
+                                11 existe, 10 existe, 9 existe, 8 existe, 7 existe, on affiche qu'il n'y a plus de news fraichess
+                          
+                 */
+
+        if (localStorage.numberNews) {
+            numberNews = Number(localStorage.numberNews);
+        } else {
+            numberNews = null;
+        }
+
+        localStorage.numberNews = numberNews;
+    </script>
+    <script>
+        function showUser() {
+
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
             } else {
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    // code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange = function () {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
-                    }
-                }
-                xmlhttp.open("GET", "http://www.goethals.fr/ajax/getuserhappy.php?q=" + str, true);
-                xmlhttp.send();
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "http://www.goethals.fr/ajax/getuserhappy.php", true);
+            xmlhttp.send();
+
         }
     </script>
- 
-    <div id="txtHint">
+    <div id="txtHint" style="position:absolute; top:100px; width: 80%; text-align: center; margin: 10%;">
     </div>
-    <div id="slime_conteneur"  style="background: rgb(142, 68, 173);" onClick="showUser('1')">
+    <div id="slime_conteneur" style="background: rgb(142, 68, 173);" onClick="showUser()">
         <div class="slime" id="slime1">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125px" height="100px" viewBox="0 0 126.75 103.25" enable-background="new 0 0 126.75 103.25" xml:space="preserve">
                 <g class="corps" style="fill: rgb(149, 165, 166);">
@@ -77,5 +105,4 @@ http://www.slickmedia.co.uk/news/blog/glenns-blog/fix-ipad-iphone-css-hover-issu
             </svg>
         </div>
     </div>
-    <!--<script src="face/index.js"></script>-->
 </div>
