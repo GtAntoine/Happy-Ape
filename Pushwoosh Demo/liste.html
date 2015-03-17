@@ -1,0 +1,61 @@
+
+<div data-role="view" data-init="mobileListViewEndlessScrolling" data-title="Scroll down to load">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+            <a data-align="right" data-role="button" class="nav-button" href="#/">Index</a>
+        </div>
+    </header>
+
+    <ul id="endless-scrolling"></ul>
+</div>
+
+<script type="text/x-kendo-tmpl" id="endless-scrolling-template">
+    <div class="product">
+
+        <p>#:titre#</p>
+    </div>
+</script>
+
+<script>
+    function mobileListViewEndlessScrolling() {
+        var dataSource = new kendo.data.DataSource({
+            type: "json",
+            transport: {
+                read: {
+                    url: "http://www.goethals.fr/ajax/getuserhappy.php"
+                }
+            },
+          
+            serverPaging: true,
+            serverSorting: true,
+            pageSize: 18
+        });
+
+        $("#endless-scrolling").kendoMobileListView({
+            dataSource: dataSource,
+            template: $("#endless-scrolling-template").text(),
+            endlessScroll: true
+        });
+    }
+</script>
+
+<style scoped>
+    .product h3 {
+        font-size: 1.3em;
+        font-weight: normal;
+        line-height: 1.4em;
+        margin: 0;
+        padding: .5em 0 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .product p {
+        font-size: 1em;
+        margin: 0;
+        padding: .3em 0 0;
+    }
+  
+</style>
+
