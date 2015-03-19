@@ -1,109 +1,305 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title></title>
     <meta charset="utf-8" />
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
     <link href="styles/main.css" rel="stylesheet" />
-
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
-
     <script src="scripts/demo.js"></script>
     <script src="scripts/app.js"></script>
-    
+    <script src="scripts/velocity.min.js"></script>
+    <script src="scripts/mainMorphing.js"></script>
+    <script src="scripts/mainTimeline.js"></script>
     <link rel="stylesheet" href="face/style.css" media="screen" type="text/css">
+    <link rel="stylesheet" type="text/css" href="share/share.css" />
+    <script src="share/TweenMax.min.js"></script>
+    <script src="share/share.js"></script>
+    <!--<link href="styles/styleMorphing.css" rel="stylesheet" >
+    <link href="styles/stylesTimeline.css" media="all" rel="stylesheet">
+
+
+
+transition
+bdd
+social plugin
+
+titre
+heure
+source
+texte
+img dossier img et lien en BDD -> lien de la ressource sur le site d'origine ?
+
+
+stocker news en local et afficher liste
+
+retrouver l'animation social sharing la dedans
+http://www.jqueryrain.com/example/jquery-animation-example/page/37/
+-->
 </head>
+
 <body>
-    <!--Home View-->
-    <div id="tabstrip-home"
-        data-role="view"
-        data-title="Plugin Info">
-        <header data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-                <a id="skin-change" data-role="button" data-align="right" data-click="app.changeSkin">Flat</a>
+    <!--Home View
+    <div id="home" data-role="view">
+        <a href="#tabstrip-home" style=" display: block; height: 100%; min-height: 100%; width: 100%; min-width: 100%; position:absolute;">
+            <div class="circle"></div>
+            <style>
+                div.circle {
+               
+                    margin: auto;
+                   
+                    background: #000;
+                    border-radius: 50%;
+                    -webkit-animation: circleGrow 800ms ease-in-out infinite alternate both;
+                    -moz-animation: circleGrow 800ms ease-in-out infinite alternate both;
+                    -o-animation: circleGrow 800ms ease-in-out infinite alternate both;
+                    animation: circleGrow 800ms ease-in-out infinite alternate both;
+                }
+                @-webkit-keyframes circleGrow {
+                    0% {
+                         margin-top: 4em;
+                        height: 2px;
+                        width: 2px;
+                    }
+                    50% {
+                        margin-top: 5em;
+                        height: 40px;
+                        width: 40px;
+                    }
+                    100% {
+                        margin-top: 6em;
+                        height: 34px;
+                        width: 34px;
+                    }
+                }
+                @-moz-keyframes circleGrow {
+                    0% {
+                        height: 2px;
+                        width: 2px;
+                    }
+                    50% {
+                        height: 40px;
+                        width: 40px;
+                    }
+                    100% {
+                        height: 34px;
+                        width: 34px;
+                    }
+                }
+                @-o-keyframes circleGrow {
+                    0% {
+                        height: 2px;
+                        width: 2px;
+                    }
+                    50% {
+                        height: 40px;
+                        width: 40px;
+                    }
+                    100% {
+                        height: 34px;
+                        width: 34px;
+                    }
+                }
+                @keyframes circleGrow {
+                    0% {
+                          margin-top: 4em;
+                        height: 2px;
+                        width: 2px;
+                    }
+                    50% {
+                          margin-top: 5em;
+                        height: 40px;
+                        width: 40px;
+                    }
+                    100% {
+                          margin-top: 6em;
+                        height: 34px;
+                        width: 34px;
+                    }
+                }
+            </style>
+        </a>
+    </div>-->
+    <div id="tabstrip-home" data-role="view" data-init="mobileListViewEndlessScrolling">
+        <style type="text/css">
+            #liste {
+                display: none;
+            }
+        </style>
+        <script language="JavaScript">
+            function setVisibility(id, visibility) {
+                document.getElementById(id).style.display = visibility;
+            }
+        </script>
+        <div id="slime_conteneur" onClick="setVisibility('liste', 'inline');">
+            <div class="slime" id="slime1">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125px" height="100px" viewBox="0 0 126.75 103.25" enable-background="new 0 0 126.75 103.25" xml:space="preserve">
+                    <g class="corps" style="fill: rgb(1, 187, 199);">
+                        <path d="M126.153,71.798c0,35.275-30.128,31.452-65.403,31.452S0.411,107.073,0.411,71.798S34,0.927,63.282,0.927
+				C92,0.927,126.153,36.523,126.153,71.798z"></path>
+                    </g>
+                    <g class="ombre">
+                        <path opacity="0.1" d="M98.583,98.968c0,5.085-4.708,4.313-37.833,4.313c-29.563,0-32.769,0.771-32.769-4.313
+				c0-8.718,18.86-10.218,35.301-10.218C79.407,88.75,98.583,91.125,98.583,98.968z"></path>
+                    </g>
+                    <g class="reflet">
+                        <ellipse transform="matrix(0.5486 -0.8361 0.8361 0.5486 20.2905 77.5842)" opacity="0.5" fill="#FFFFFF" cx="82" cy="20" rx="7.75" ry="13.75"></ellipse>
+                    </g>
+                    <g class="yeux">
+                        <g>
+                            <path d="M36.833,66.583c-3.359,0-6.083,2.724-6.083,6.083c0,3.359,2.724,6.083,6.083,6.083c3.36,0,6.083-2.724,6.083-6.083
+					C42.917,69.307,40.193,66.583,36.833,66.583z M39.5,71.25c-0.874,0-1.583-0.709-1.583-1.583c0-0.875,0.709-1.583,1.583-1.583
+					c0.875,0,1.583,0.709,1.583,1.583C41.083,70.541,40.375,71.25,39.5,71.25z"></path>
+                            <circle fill="#FFFFFF" cx="39.5" cy="69.667" r="1.583"></circle>
+                            <path d="M88.833,66.583c-3.359,0-6.083,2.724-6.083,6.083c0,3.359,2.724,6.083,6.083,6.083c3.36,0,6.083-2.724,6.083-6.083
+					C94.917,69.307,92.193,66.583,88.833,66.583z M91.5,71.25c-0.874,0-1.583-0.709-1.583-1.583c0-0.875,0.709-1.583,1.583-1.583
+					c0.875,0,1.583,0.709,1.583,1.583C93.083,70.541,92.375,71.25,91.5,71.25z"></path>
+                            <circle fill="#FFFFFF" cx="91.5" cy="69.667" r="1.583"></circle>
+                        </g>
+                    </g>
+                    <g class="bouche">
+                        <g>
+                            <path fill="#A862A6" d="M 49.9 75.1472 c 0 3.151 1.885 8.28779 4.528 9.85279 c 3.228 -1.911 7.589 -2.749 11.072 -2.749 S 73.344 83.089 76.572 85 c 2.643 -1.565 4.528 -6.70179 4.528 -9.85279 H 65.584 H 49.9 Z">
+                            </path>
+                            <path fill="#E0B7E5" d="M52.678,84.25c7.116,3.558,15.028,3.558,22.144,0C68.463,80.485,59.037,80.485,52.678,84.25
+					C52.679,84.25,52.656,84.25,52.678,84.25z"></path>
+                        </g>
+                    </g>
+                </svg>
             </div>
-        </header>
-
-        <div class="logo-image-wrapper">
-  	      <div class="logo-image"></div>            
         </div>
-        <h3>Pushwoosh Plugin Demo Version FracArt</h3>
-        <p>
-            The Pushwoosh plugin allows you to receive push notifications sent by the Pushwoosh platform.
-        </p>
-        <p>
-            Depending on the god damn platform you can do various cool things.
-            This demo app gets you up and running quickly - for advanced usage take a look at the documentation at pushwoosh.com.
-        </p>
-        <p>
-            Custom plugins don't work in the simulator and the AppBuilder companion app,
-            so inside Telerik AppBuilder choose Run - Build - iOS/Android/WP8 - App package.
-        </p>
+        <div id="liste">
+            <h2 class="">
+            More love
+            </h2>
+            <ul id="endless-scrolling" style="min-height: 30em"></ul>
+            <script type="text/x-kendo-tmpl" id="endless-scrolling-template">
+                <div class="general">
+                    <div class="product">
+                        <img src="http://cdn.bavotasan.com/wp-content/uploads/2011/02/desktop.jpg" alt="#:titre# image" class="pullImage" />
+                        <div class="titreDate">
+                            <h3>#:titre#</h3>
+                            <p>#:date#</p>
+                        </div>
+                    </div>
+                    <div class="resume">
+                        <p class="">#:News#</p>
+                        <div class="link">
+                            <a href="#:source#">#:source#</a>
+                        </div>
+                    </div>
+                    <a href="\#details?id=#:id#">
+                    </a>
+                </div>
+            </script>
+            <script>
+                var requestOK = false;
+
+                function mobileListViewEndlessScrolling() {
+                    var dataSource;
+                    requestOK = false;
+                    jQuery.ajax('http://www.goethals.fr/ajax/getuserhappy.php', {
+                        dataType: "json",
+                        success: function (data) {
+                            requestOK = true;
+                            var dataSource = new kendo.data.DataSource({
+                                data: data,
+                                pageSize: 5
+                            });
+                            dataSource.read();
+                            $("#endless-scrolling").kendoMobileListView({
+                                dataSource: dataSource,
+                                template: $("#endless-scrolling-template").text()
+
+                            });
+                            return false;
+                        }
+                    });
+                    if (!requestOK) {
+                        // alert('okk ');
+                        // document.getElementById("txtHint").innerHTML = "no connection";
+                    }
+                }
+            </script>
+            <h3>Pushwoosh Plugin Demo Version FracArt</h3>
+            <button onclick="window.plugins.socialsharing.shareViaTwitter('Message via Twitter')">message via Twitter</button>
+            <button onclick="window.plugins.socialsharing.shareViaTwitter('Message and link via Twitter', null /* img */, 'http://www.x-services.nl')">msg and link via Twitter</button>
+            <button onclick="window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})">msg via Facebook (with errcallback)</button>
+            <div class="demo">
+                <p>
+                    <button data-role="button" class="button" data-bind="click: registerDevice">Register device</button>
+                </p>
+                <p>
+                    <button data-role="button" class="button" data-bind="click: getPushToken">Get push token</button>
+                </p>
+                <p>
+                    <br/>Unregister the device for testing purposes.
+                </p>
+                <p>
+                    <button data-role="button" class="button" data-bind="click: unregisterDevice">Unregister device</button>
+                </p>
+            </div>
+            <button data-role="button" data-click="scroll">
+                Scroll To Top
+            </button>
+            <script>
+                $('#theIDofTheButtonThatTriggersThisAnimation').click(function () {
+                    $('#theIDofTheElementYouWantToSmoothlyScroll').animate({
+                        scrollTop: 0
+                    }, 2000);
+                });
+
+                function scroll2() {
+                    $('.km-scroll-container').animate({
+                        scrollTop: $("#target-element").offset().top
+                    }, 1000);
+                }
+            </script>
+            <div class="content" id="target-element">
+                <div class="share">
+                    <button class="share-toggle-button">
+                        <i class="share-icon fa fa-share-alt"></i>
+                    </button>
+                    <ul class="share-items">
+                        <li class="share-item">
+                            <a href="#" class="share-button">
+                                <i class="share-icon fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="share-item">
+                            <a href="#" class="share-button">
+                                <i class="share-icon fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="share-item">
+                            <a href="#" class="share-button">
+                                <i class="share-icon fa fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li class="share-item">
+                            <a href="#" class="share-button">
+                                <i class="share-icon fa fa-tumblr"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!--Demo View-->
-    <div id="tabstrip-demo"
-        data-role="view"
-        data-title="Plugin Demo"
-        data-model="app.demoService.viewModel">
-
-        <div class="demo">
-            <p>
-                After you've changed the configuration in scripts/demo.js, you can have the device register itself with the Pushwoosh server.
-            </p>
-            <p>
-                <button data-role="button" class="button" data-bind="click: registerDevice">Register device</button>
-            </p>
-            <p>
-                <br/>We can always inspect the push token we received.
-            </p>
-            <p>
-                <button data-role="button" class="button" data-bind="click: getPushToken">Get push token</button>
-            </p>
-            <p>
-                <br/>Unregister the device for testing purposes.
-            </p>
-            <p>
-                <button data-role="button" class="button" data-bind="click: unregisterDevice">Unregister device</button>
-            </p>
-            <p>
-                <br/>Enable 'Geozones' in your Pushwoosh account to be able to use these methods.
-            </p>
-            <p>
-                <button data-role="button" class="button" data-bind="click: startLocationTracking">Start location tracking</button>
-            </p>
-            <p>
-                <button data-role="button" class="button" data-bind="click: stopLocationTracking">Stop location tracking</button>
-            </p>
-            <p>
-                The fun part is actually sending messages from Pushwoosh to this device.
-                Try sending a message while this app is in the foreground, background or when the device is locked.
-                <strong>Happy pushing!</strong>
-            </p>
-		</div>
-    </div>
-
-    <!--Layout-->
+    <!--Layout
     <div data-role="layout" data-id="tabstrip-layout">
-        <!--Header-->
-        <div data-role="header">
-            <div data-role="navbar">
-                <span data-role="view-title"></span>
-            </div>
-        </div>
-
-        <!--Footer-->
+     
         <div data-role="footer">
             <div data-role="tabstrip">
                 <a href="#/" data-icon="info">info</a>
-                <a href="#tabstrip-demo" data-icon="play">demo</a>
-                 <a href="face.html" data-icon="play">face</a>
-                 <a href="ajax.html" data-icon="play">ajax</a>
+                <a href="#tabstrip-demo" data-icon="play">options</a>
+                <a href="face.html" data-icon="play">face et liste (àséparer)</a>
             </div>
         </div>
-    </div>
+    </div>-->
 </body>
+
 </html>
