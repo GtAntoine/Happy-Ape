@@ -3,7 +3,7 @@ var PUSHWOOSH_APPID = "278B0-4025D";
 
 // For Android, we need the 'Project Number' you created at https://console.developers.google.com
 // While you're there, make sure that 'Google Cloud Messaging for Android' is enabled (menu item API's)
-var GOOGLE_PROJECT_ID = "15978248288";
+var GOOGLE_PROJECT_ID = "931115461952";
 
 (function (global) {
     var DemoViewModel,

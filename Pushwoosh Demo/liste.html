@@ -1,5 +1,5 @@
 
-<div data-role="view" data-init="mobileListViewEndlessScrolling" data-title="Scroll down to load">
+<div data-role="view" data-init="mobileListViewEndlessScrolling2" data-title="Scroll down to load" data-model="app.demoService.viewModel">
     <header data-role="header">
         <div data-role="navbar">
             <span data-role="view-title"></span>
@@ -10,7 +10,7 @@
     <ul id="endless-scrolling"></ul>
 </div>
 
-<script type="text/x-kendo-tmpl" id="endless-scrolling-template">
+<script type="text/x-kendo-tmpl" id="endless-scrolling-template2">
     <div class="product">
 
         <p>#:titre#</p>
@@ -18,24 +18,19 @@
 </script>
 
 <script>
-    function mobileListViewEndlessScrolling() {
-        var dataSource = new kendo.data.DataSource({
+    function mobileListViewEndlessScrolling2() {
+        var dataSource2 = new kendo.data.DataSource({
             type: "json",
             transport: {
                 read: {
                     url: "http://www.goethals.fr/ajax/getuserhappy.php"
                 }
-            },
-          
-            serverPaging: true,
-            serverSorting: true,
-            pageSize: 18
+            }
         });
 
         $("#endless-scrolling").kendoMobileListView({
-            dataSource: dataSource,
-            template: $("#endless-scrolling-template").text(),
-            endlessScroll: true
+            dataSource: dataSource2,
+            template: $("#endless-scrolling-template2").text()
         });
     }
 </script>
